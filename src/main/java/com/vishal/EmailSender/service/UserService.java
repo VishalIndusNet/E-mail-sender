@@ -44,6 +44,7 @@ public class UserService {
         return "User registration successful";
     }
 
+
     public String verifyAccount(String email, String otp) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with this email: " + email));
@@ -56,6 +57,7 @@ public class UserService {
         }
         return "Please regenerate otp and try again";
     }
+
 
         public String regenerateOtp(String email) {
             User user = userRepository.findByEmail(email)
@@ -72,6 +74,8 @@ public class UserService {
             userRepository.save(user);
             return "Email sent... please verify account within 1 minute";
     }
+
+
     public String login(LoginDto loginDto) {
         User user = userRepository.findByEmail(loginDto.getEmail())
                 .orElseThrow(
@@ -84,6 +88,7 @@ public class UserService {
         return "Login successful";
     }
 
+
     public String forgetPassword(String email) throws MessagingException {
     User user = userRepository.findByEmail(email)
             .orElseThrow(
@@ -95,8 +100,8 @@ public class UserService {
             throw new RuntimeException("Unable to send otp please try again");
         }
         return "please check your email to verify otp";
-
     }
+
 
     public String setpassword(String email, String newPAssword) {
 
